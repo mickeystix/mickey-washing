@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 game 'gta5'
 
-description 'QB-Pawnshop'
+description 'Mickey-Washing'
 version '1.0.0'
 
 server_scripts {
@@ -11,6 +11,4 @@ server_scripts {
 
 client_scripts {
 	'config.lua',
-	'client/main.lua',
-	'client/melt.lua',
 }
