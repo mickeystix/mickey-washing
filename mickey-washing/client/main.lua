@@ -1,8 +1,8 @@
-RepentzFW = nil
+QBCore = nil
 
 Citizen.CreateThread(function()
-	while RepentzFW == nil do
-		TriggerEvent('RepentzFW:GetObject', function(obj) RepentzFW = obj end)
+	while QBCore == nil do
+		TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
 		Citizen.Wait(300)
 	end
 end)
@@ -43,14 +43,14 @@ Citizen.CreateThread(function()
 					if IsControlJustReleased(0, 38) then
 						created_ped = TaskStartScenarioInPlace(PlayerPedId(), "WORLD_HUMAN_STAND_IMPATIENT", 0, true)
 						SetEntityInvincible(created_ped, true)
-						RepentzFW.Functions.Progressbar("trade_marked_bills", "Trading...", 5000, false, true, {}, {}, {}, {}, function() -- Done
+						QBCore.Functions.Progressbar("trade_marked_bills", "Trading...", 5000, false, true, {}, {}, {}, {}, function() -- Done
 							ClearPedTasks(PlayerPedId())
 							TriggerServerEvent("mickey-washing:server:tradeItems")
 							sellItemsSet = false
 							sellPrice = 0
 						end, function() -- Cancel
 							ClearPedTasks(PlayerPedId())
-							RepentzFW.Functions.Notify("Canceled..", "error")
+							QBCore.Functions.Notify("Canceled..", "error")
 						end)
 					end
 				--[[elseif CheckWeight() then
@@ -71,7 +71,7 @@ end)
 
 --Use this callback to get if player is overweight or not. finish up on server side
 function CheckWeight()
-	RepentzFW.Functions.TriggerCallback('mickey-washing:server:checkWeight', function(result)
+	QBCore.Functions.TriggerCallback('mickey-washing:server:checkWeight', function(result)
 		overweight = result
 	end)
 	Citizen.Wait(500)
@@ -81,7 +81,7 @@ end
 
 function GetSellingPrice()
 	local price = 0
-	RepentzFW.Functions.TriggerCallback('mickey-washing:server:getSellPrice', function(result)
+	QBCore.Functions.TriggerCallback('mickey-washing:server:getSellPrice', function(result)
 		price = result
 	end)
 	Citizen.Wait(500)
